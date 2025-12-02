@@ -1,5 +1,5 @@
-
 STARTING_POS = 50
+
 
 def parse_input() -> list[int]:
     results = []
