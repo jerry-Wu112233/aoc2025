@@ -1,6 +1,3 @@
-from itertools import combinations
-
-
 def parse_input() -> list[str]:
     results = []
     with open("day03/input.txt", "r") as f:
