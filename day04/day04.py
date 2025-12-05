@@ -44,7 +44,7 @@ def part2() -> int:
 
 def get_neighboring_coords(coord: complex) -> Iterator[complex]:
     for x_dir, y_dir in directions:
-        coord_to_check = coord + (x_dir + y_dir * 1j)
+        coord_to_check = coord + complex(x_dir, y_dir)
         if coord_to_check not in grid:
             continue
         if grid[coord_to_check] == ".":
