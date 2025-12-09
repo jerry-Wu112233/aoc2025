@@ -13,7 +13,8 @@ requires-python = ">=3.9"
 
 dependencies = [
     "numpy>=1.26",
-    "networkx"
+    "networkx",
+    "shapely"
 ]
 
 # Tell setuptools to include all top-level Python files and folders
