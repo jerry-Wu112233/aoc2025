@@ -33,13 +33,13 @@ def part2() -> int:
 
 def get_area(
     coord_1: tuple[int, int], coord_2: tuple[int, int]
-) -> Union[LineString, Polygon]:
+) -> int:
     return int((abs(coord_1[0] - coord_2[0]) + 1) * (abs(coord_1[1] - coord_2[1]) + 1))
 
 
 def construct_rectangle_or_line_segment(
     coord_1: tuple[int, int], coord_2: tuple[int, int]
-):
+) -> Union[LineString, Polygon]:
     if coord_1[0] == coord_2[0] or coord_1[1] == coord_2[1]:
         return LineString([coord_1, coord_2])
     left_most_coord = min(coord_1, coord_2)
