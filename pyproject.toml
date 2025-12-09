@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=62", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "advent_of_code"
+version = "0.1.0"
+description = "Advent of Code solutions"
+authors = [
+    { name = "Your Name" }
+]
+requires-python = ">=3.9"
+
+dependencies = [
+    "numpy>=1.26",
+]
+
+# Tell setuptools to include all top-level Python files and folders
+[tool.setuptools]
+packages = []
+py-modules = []
