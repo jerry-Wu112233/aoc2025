@@ -1,13 +1,14 @@
 import math
 import numpy as np
 
+
 def parse_input() -> tuple[list[str], list[str]]:
     number_list = []
     symbol_list = []
 
     with open("day06/input.txt") as f:
-        *number_list, symbol_list = f.read().split("\n") 
-        
+        *number_list, symbol_list = f.read().split("\n")
+
     return number_list, symbol_list
 
 
@@ -26,6 +27,7 @@ def part1() -> int:
             result += sum(num_list)
     return result
 
+
 def part2() -> int:
     nums, syms = parse_input()
     total = 0
@@ -33,8 +35,8 @@ def part2() -> int:
     numbers = []
     while column >= 0:
         while True:
-            numbers.append(int(''.join([line[column] for line in nums])))
-            if syms[column] == ' ': 
+            numbers.append(int("".join([line[column] for line in nums])))
+            if syms[column] == " ":
                 column -= 1
             else:
                 if syms[column] == "+":

@@ -1,5 +1,3 @@
-
-
 from collections import Counter, deque
 
 
@@ -13,7 +11,8 @@ def parse_input():
                 if c == "S":
                     start = complex(i, j)
             depth = i
-    return start, grid, depth 
+    return start, grid, depth
+
 
 def part1() -> tuple[int, int]:
     start, grid, depth = parse_input()
@@ -31,14 +30,13 @@ def part1() -> tuple[int, int]:
             next_pos = curr_pos + complex(1, 0)
             if next_pos == "^":
                 possible_paths.add(curr_pos + complex(1, -1))
-                possible_paths.add(curr_pos + complex(1,  1))
+                possible_paths.add(curr_pos + complex(1, 1))
             else:
-                possible_paths.add(curr_pos + complex(1,  0))
+                possible_paths.add(curr_pos + complex(1, 0))
         queue.append((coord, paths_at_each_coord[curr_pos]) for coord in possible_paths)
         paths_at_each_coord = Counter()
-        
+
     return len(splitters_visited), path
 
+
 print(part1())
-        
-    
