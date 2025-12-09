@@ -5,7 +5,7 @@ from shapely import Polygon, LineString
 
 def parse_input() -> list[tuple[int, int]]:
     coords = []
-    with open("day08/input.txt") as f:
+    with open("day09/input.txt") as f:
         for line in f.readlines():
             i, j = line.split(",")
             coords.append((int(i), int(j)))
