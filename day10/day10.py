@@ -1,7 +1,7 @@
 import ast
 from collections import deque
 from dataclasses import dataclass
-from scipy.optimize import milp, LinearConstraint, Bounds
+from scipy.optimize import milp, LinearConstraint
 
 
 @dataclass(frozen=True)
