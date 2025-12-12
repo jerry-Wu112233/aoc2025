@@ -31,9 +31,7 @@ def part2() -> int:
     return max_area
 
 
-def get_area(
-    coord_1: tuple[int, int], coord_2: tuple[int, int]
-) -> int:
+def get_area(coord_1: tuple[int, int], coord_2: tuple[int, int]) -> int:
     return int((abs(coord_1[0] - coord_2[0]) + 1) * (abs(coord_1[1] - coord_2[1]) + 1))
 
 
@@ -50,6 +48,4 @@ def construct_rectangle_or_line_segment(
     """
     coord_to_constr1 = (right_most_coord[0], left_most_coord[1])
     coord_to_constr2 = (left_most_coord[0], right_most_coord[1])
-    return Polygon(
-        [left_most_coord, coord_to_constr1, right_most_coord, coord_to_constr2]
-    )
+    return Polygon([left_most_coord, coord_to_constr1, right_most_coord, coord_to_constr2])

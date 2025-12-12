@@ -11,13 +11,20 @@ authors = [
 ]
 requires-python = ">=3.9"
 
+
+
 dependencies = [
     "numpy>=1.26",
     "networkx",
-    "shapely"
+    "shapely",
+    "ruff",
+    "scipy"
 ]
 
 # Tell setuptools to include all top-level Python files and folders
 [tool.setuptools]
 packages = []
 py-modules = []
+
+[tool.ruff]
+line-length = 120
