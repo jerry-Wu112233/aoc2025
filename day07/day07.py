@@ -1,4 +1,4 @@
-from collections import Counter, deque
+from collections import Counter
 
 
 def parse_input():
@@ -14,29 +14,33 @@ def parse_input():
     return start, grid, depth
 
 
-def part1() -> tuple[int, int]:
+def part_1_and_2() -> tuple[int, int]:
     start, grid, depth = parse_input()
-    queue = [(start, 1)]
+    layer = [(start, 1)]
     paths_at_each_coord = Counter()
     unique_paths = 0
-    while queue:
-        possible_paths = set()
-        for _ in range(len(queue)):
-            curr_pos, paths = queue.pop()
+    splitters_visited = 0
+    while layer:
+        next_layer = []
+        for _ in range(len(layer)):
+            curr_pos, paths = layer.pop()
+
             if curr_pos.real == depth:
                 unique_paths += paths
                 continue
-            paths_at_each_coord[curr_pos] += 1
+
+            paths_at_each_coord[curr_pos] += paths
+
+        for curr_pos, paths in paths_at_each_coord.items():
             next_pos = curr_pos + complex(1, 0)
-            if next_pos == "^":
-                possible_paths.add(curr_pos + complex(1, -1))
-                possible_paths.add(curr_pos + complex(1, 1))
+            if next_pos not in grid:
+                continue
+            if grid[next_pos] == "^":
+                next_layer.append((curr_pos + complex(1, -1), paths))
+                next_layer.append((curr_pos + complex(1, 1), paths))
+                splitters_visited += 1
             else:
-                possible_paths.add(curr_pos + complex(1, 0))
-        queue.append((coord, paths_at_each_coord[curr_pos]) for coord in possible_paths)
+                next_layer.append((next_pos, paths))
+        layer = next_layer
         paths_at_each_coord = Counter()
-
-    return len(splitters_visited), path
-
-
-print(part1())
+    return splitters_visited, unique_paths

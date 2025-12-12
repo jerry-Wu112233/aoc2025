@@ -9,14 +9,16 @@ with open("day11/input.txt") as f:
 
 
 def part1() -> int:
-    return len(nx.all_simple_paths(digraph, "you", "out"))
+    return sum(1 for _ in nx.all_simple_paths(digraph, "you", "out"))
 
 
 def part2() -> int:
-    return len(nx.all_simple_paths(digraph, "svr", "fft")) * len(nx.all_simple_paths(digraph, "fft", "dac")) * len(
-        nx.all_simple_paths(digraph, "dac", "out")
-    ) + len(nx.all_simple_paths(digraph, "svr", "dac")) * len(nx.all_simple_paths(digraph, "dac", "fft")) * len(
-        nx.all_simple_paths(digraph, "fft", "out")
+    return sum(1 for _ in nx.all_simple_paths(digraph, "svr", "fft")) * sum(
+        1 for _ in nx.all_simple_paths(digraph, "fft", "dac")
+    ) * sum(1 for _ in nx.all_simple_paths(digraph, "dac", "out")) + sum(
+        1 for _ in nx.all_simple_paths(digraph, "svr", "dac")
+    ) * sum(1 for _ in nx.all_simple_paths(digraph, "dac", "fft")) * sum(
+        1 for _ in nx.all_simple_paths(digraph, "fft", "out")
     )
 
 
