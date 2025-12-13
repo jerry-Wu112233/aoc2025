@@ -1,3 +1,4 @@
+import functools
 import networkx as nx
 
 digraph = nx.DiGraph()
@@ -13,13 +14,26 @@ def part1() -> int:
 
 
 def part2() -> int:
-    return sum(1 for _ in nx.all_simple_paths(digraph, "svr", "fft")) * sum(
-        1 for _ in nx.all_simple_paths(digraph, "fft", "dac")
-    ) * sum(1 for _ in nx.all_simple_paths(digraph, "dac", "out")) + sum(
-        1 for _ in nx.all_simple_paths(digraph, "svr", "dac")
-    ) * sum(1 for _ in nx.all_simple_paths(digraph, "dac", "fft")) * sum(
-        1 for _ in nx.all_simple_paths(digraph, "fft", "out")
-    )
+    START = "svr"
+    FFT = "fft"
+    DAC = "dac"
+    END = "out"
+    return count_paths(START, FFT) * count_paths(FFT, DAC) * count_paths(DAC, END) + count_paths(
+        START, DAC
+    ) * count_paths(DAC, FFT) * count_paths(FFT, END)
 
 
-print(part2())
+def count_paths(start: str, end: str) -> int:
+    @functools.cache
+    def dfs_cached(current_node):
+        if current_node == end:
+            return 1
+        count = 0
+        try:
+            for v in digraph.successors(current_node):
+                count += dfs_cached(v)
+        except nx.exception.NetworkXError:
+            return 0
+        return count
+
+    return dfs_cached(start)

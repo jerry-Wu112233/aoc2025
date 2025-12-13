@@ -55,7 +55,7 @@ def euc_dist(coord_1: tuple[int], coord_2: tuple[int]) -> float:
     return math.sqrt((coord_1[0] - coord_2[0]) ** 2 + (coord_1[1] - coord_2[1]) ** 2 + (coord_1[2] - coord_2[2]) ** 2)
 
 
-def part1_and_2() -> int:
+def part_1_and_2() -> int:
     coords = parse_input()
     disjoint_set = DisjointSetUnion(coords)
     coord_dists = []
